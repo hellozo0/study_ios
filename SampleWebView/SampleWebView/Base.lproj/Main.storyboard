@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SampleWebView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leA-Dg-Deh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="19E-uJ-1Bf"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="E3j-My-Hnl"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="EAh-VU-wHr"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IEY-5G-8ff"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="RHe-pd-Xqt"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="SYe-qZ-YLW"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VDl-eC-uKt"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="e2y-Yv-HPT"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="jeV-cC-0pE"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mpU-pg-mVX"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oU1-SH-vf4"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="p6J-ED-PUy"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="qfW-2j-2V8"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="sab-oC-qPF"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="zJX-4M-OYy"/>
+                            <constraint firstItem="leA-Dg-Deh" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="zt3-D3-pLQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="WebViewMain" destination="leA-Dg-Deh" id="CQV-gH-PGi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138.40000000000001" y="78.710644677661179"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
