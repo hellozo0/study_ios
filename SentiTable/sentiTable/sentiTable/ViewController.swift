@@ -22,10 +22,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //1. 데이터 무엇인지. --> 10번 반복..? --> 10개의 cell...?!
         
         //2가지 방법으로 cell 사용하는 법
-        //1번 방법 - 임의의 셀을 만들기
-        let cell = UITableViewCell.init(style: .default, reuseIdentifier: "TableCellType1")
+        //1번 방법 - 임의의 셀을 만들기 : 거의 안씀, 연습
+        //2번 방법 - 스토리보드 + id : 실전
+//        let cell = UITableViewCell.init(style: .default, reuseIdentifier: "TableCellType1")
+//        let cell = UITableViewCell.init(style: .default, reuseIdentifier: "Type1")
         
-        cell.textLabel?.text = "\(indexPath.row)"
+        //정의한다. 다시 재사용할 수 있는 셀을 정의해서 테이블뷰 메인에 꽃아넣는다. 순번에 해당하는 것을 만나면 Type1에 있는 것을 넣는다.
+        let cell = TableViewMain.dequeueReusableCell(withIdentifier: "Type1", for: indexPath) as! Type1
+        
+        //as? as! - 부모 자식 친자확인
+        //타입을 안전하게 추론하는 as?와 강제로 변환하는 as!
+        cell.LabelText.text = "\(indexPath.row)"
+        
+//        cell.textLabel?.text = "\(indexPath.row)"
         
         return cell
         
@@ -34,6 +43,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
 
+    
+    //클릭
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("CLICK !!! \(indexPath.row)")
+    }
     
     
     override func viewDidLoad() {
