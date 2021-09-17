@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-
+  
     
     //클릭
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
