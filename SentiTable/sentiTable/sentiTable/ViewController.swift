@@ -12,11 +12,68 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var TableViewMain: UITableView!
     
     
+    //ch10 내용
+    //1. http 통신 방법 - urlsession 방식
+    // 바이트형태로 주고받는 방식이나 http방식
+ 
+    //2. JSON 데이터 형태 {"돈":"10000"} 배열 형태의 {["10000",{"돈":"10000"} ,"100"]}
+    //JSON은 서버-클라이언크가 정보를 주고받을때 규약이 없었었음
     
+    //3. taleview의 데이터 매칭!! <- 통보 후 그리기!
+    //!!!!!! (중요) swift는 네트워크 통신을 할때, 일꾼인 thread가 background에서 돈다. / 근데 ui는 main이다 몸통, 위에서 돈다 따라서 그리라고 통보하면 main에서 그리도록 요청해야한다.
+    
+    
+    var newsData : Array<Dictionary<String, Any>>? //값이 비어있을 수 있어!
+    
+    func getNews(){ //애는 background에서 돈다
+        let task = URLSession.shared.dataTask(with: URL(string:"https://newsapi.org/v2/top-headlines?country=us&apiKey=1692fcbbd09d46718671c45011e2bddb")!) {(data, response, error) in
+            if let dataJson = data{
+                
+                //json parsing(변환)
+                do {
+                    let json =  try JSONSerialization.jsonObject(with: dataJson, options: []) as! Dictionary<String, Any>
+                    print(json)
+                    //Dictionary
+                    let articles = json["articles"] as! Array<Dictionary<String, Any>>
+                    print(articles)
+                    self.newsData = articles  //~.self를통해
+                    
+                    DispatchQueue.main.async { //,main에서 그려라
+                        self.TableViewMain.reloadData() //data를 가져왔음을 통보.  main애서 돌아라~ 요청 해야함
+                    }
+                    
+                    
+//                    for(idx, value) in articles.enumerated(){
+//                        //json 형태인지 확인해보기
+//                        if let v = value as? Dictionary<String, Any>{
+//                            print("\(v["title"])")
+//                        }
+//                    }
+                    
+         
+                }
+                catch{}
+            }
+        }
+        task.resume()
+    }
+    
+    
+    
+    // 아래 코드는 ch9까지의 코드
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //2. 데이터 몇개인지.
-        return 10
+        
+        //ch10 에서 변경
+        if let news = newsData{
+            return news.count
+        }
+        else{
+            return 0
+        }
     }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //1. 데이터 무엇인지. --> 10번 반복..? --> 10개의 cell...?!
@@ -30,21 +87,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //정의한다. 다시 재사용할 수 있는 셀을 정의해서 테이블뷰 메인에 꽃아넣는다. 순번에 해당하는 것을 만나면 Type1에 있는 것을 넣는다.
         let cell = TableViewMain.dequeueReusableCell(withIdentifier: "Type1", for: indexPath) as! Type1
         
-        //as? as! - 부모 자식 친자확인
-        //타입을 안전하게 추론하는 as?와 강제로 변환하는 as!
-        cell.LabelText.text = "\(indexPath.row)"
         
+        //ch10 추가
+        let idx = indexPath.row
+        if let news = newsData{ //newsData가 비어있지 않다는것을 확신한 다음에
+            let row = news[idx] //news의  indexPath의 row를 가져와서/ 그 뉴스의  숫자에 해당하는 번지수의 뉴스를 가져와서
+            
+            if let r = row as? Dictionary<String, Any>{ //row가(그 뉴스가)  딕셔너리 형태라면
+//                print("\(v["title"])")
+                
+                //as? as! - 부모 자식 친자확인
+                //타입을 안전하게 추론하는 as?와 강제로 변환하는 as!
+                if let title = r["title"] as? String{
+//                    cell.LabelText.text = "\(r["title"])" //출력해라! --> optional이라는 글을 벗겨내야함
+                    cell.LabelText.text = title
+                }
+                
+            }
+            
+            
+        }
 //        cell.textLabel?.text = "\(indexPath.row)"
-        
         return cell
-        
-        
-        
     }
     
-  
-    
-    //클릭
+    //옵션 - 클릭 감지
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("CLICK !!! \(indexPath.row)")
     }
@@ -57,6 +124,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         TableViewMain.delegate = self
         TableViewMain.dataSource = self
+        
+        getNews()
     }
 
     
