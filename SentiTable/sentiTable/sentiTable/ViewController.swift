@@ -25,8 +25,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var newsData : Array<Dictionary<String, Any>>? //값이 비어있을 수 있어!
     
+    
+                
     func getNews(){ //애는 background에서 돈다
         let task = URLSession.shared.dataTask(with: URL(string:"https://newsapi.org/v2/top-headlines?country=us&apiKey=1692fcbbd09d46718671c45011e2bddb")!) {(data, response, error) in
+            
+            
             if let dataJson = data{
                 
                 //json parsing(변환)
@@ -102,20 +106,72 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                    cell.LabelText.text = "\(r["title"])" //출력해라! --> optional이라는 글을 벗겨내야함
                     cell.LabelText.text = title
                 }
-                
             }
-            
-            
         }
 //        cell.textLabel?.text = "\(indexPath.row)"
         return cell
     }
     
-    //옵션 - 클릭 감지
+    
+    
+    //(1) tableview delegate 옵션 - 클릭 감지
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("CLICK !!! \(indexPath.row)")
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(identifier: "NewsDetailController") as! NewsDetailController
+        
+        
+        
+        if let news = newsData{
+            let row = news[indexPath.row]
+            print("row :: \(row)")
+            
+            if let r = row as? Dictionary<String, Any> {
+                if let imageUrl = r["urlToImage"] as? String{
+                    controller.imageUrl = imageUrl
+                }
+                if let desc = r["description"] as? String {
+                    controller.desc = desc
+                }
+            }
+        }
+        //이동! - 수동
+        showDetailViewController(controller, sender: nil)
+        
     }
     
+    //(2) storyboard (segue)로 세팅 - 세그웨이 / override는 부모의 것을 물려받아
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let id = segue.identifier, "NewsDetail" == id { //해당 세그웨이의 값
+            if let controller = segue.destination as? NewsDetailController { //destination이 NewsDetialController라면
+                
+                if let news = newsData{
+                    if let indexPath = TableViewMain.indexPathForSelectedRow {
+                        let row = news[indexPath.row]
+                        print("row :: \(row)")
+                        
+                        if let r = row as? Dictionary<String, Any>{
+                            if let imageUrl = r["urlToImage"] as? String{
+                              controller.imageUrl = imageUrl
+                            }
+                            if let desc = r["description"] as? String {
+                                controller.desc = desc
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //이동! - 자동
+    }
+    
+    
+    //ch11. 할일
+    //1. 디테일 (상세) 화면 만들기
+    //2. 값을 보내기 2가지
+    //(1) tableview delegate  (2) storyboard (segue)로 세팅
+    //3. 화면 이동 (이동하기 전에 값을 미리 세팅해야한다!!)
     
     override func viewDidLoad() {
         super.viewDidLoad()

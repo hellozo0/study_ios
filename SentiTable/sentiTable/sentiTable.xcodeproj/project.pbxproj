@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F2188DB926F5E8BB00D324F7 /* NewsDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2188DB826F5E8BB00D324F7 /* NewsDetailController.swift */; };
 		F21F9CB026EF8B47003E9B39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F9CAF26EF8B47003E9B39 /* AppDelegate.swift */; };
 		F21F9CB226EF8B47003E9B39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F9CB126EF8B47003E9B39 /* SceneDelegate.swift */; };
 		F21F9CB426EF8B47003E9B39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F9CB326EF8B47003E9B39 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F2188DB826F5E8BB00D324F7 /* NewsDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailController.swift; sourceTree = "<group>"; };
 		F21F9CAC26EF8B47003E9B39 /* sentiTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sentiTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F21F9CAF26EF8B47003E9B39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F21F9CB126EF8B47003E9B39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				F21F9CC026EF8B48003E9B39 /* Info.plist */,
 				F21F9CB826EF8B47003E9B39 /* sentiTable.xcdatamodeld */,
 				F2ED9E9A26F23B1E004C100E /* Type1.swift */,
+				F2188DB826F5E8BB00D324F7 /* NewsDetailController.swift */,
 			);
 			path = sentiTable;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				F21F9CB426EF8B47003E9B39 /* ViewController.swift in Sources */,
 				F21F9CB026EF8B47003E9B39 /* AppDelegate.swift in Sources */,
 				F21F9CBA26EF8B47003E9B39 /* sentiTable.xcdatamodeld in Sources */,
+				F2188DB926F5E8BB00D324F7 /* NewsDetailController.swift in Sources */,
 				F21F9CB226EF8B47003E9B39 /* SceneDelegate.swift in Sources */,
 				F2ED9E9B26F23B1E004C100E /* Type1.swift in Sources */,
 			);
